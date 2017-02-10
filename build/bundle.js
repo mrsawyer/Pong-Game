@@ -436,15 +436,17 @@
 
 /***/ },
 /* 9 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _settings = __webpack_require__(10);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -456,13 +458,20 @@
 			this.width = width;
 			this.height = height;
 
-			// Other code goes here...
+			this.gameElement = document.getElementById(this.element);
 		}
 
 		_createClass(Game, [{
-			key: "render",
+			key: 'render',
 			value: function render() {
-				// More code goes here...
+
+				this.gameElement.innerHTML = '';
+
+				var svg = document.createElementNS(_settings.SVG_NS, 'svg');
+				svg.setAttributeNS(null, 'width', this.width);
+				svg.setAttributeNS(null, 'height', this.height);
+				svg.setAttributeNS(null, 'viewBox', '0 0 ' + this.width + ' ' + this.height);
+				this.gameElement.appendChild(svg);
 			}
 		}]);
 
@@ -470,6 +479,17 @@
 	}();
 
 	exports.default = Game;
+
+/***/ },
+/* 10 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var SVG_NS = exports.SVG_NS = 'http://www.w3.org/2000/svg';
 
 /***/ }
 /******/ ]);
