@@ -11,6 +11,8 @@ export default class Game {
 		this.element = element;
 		this.width = width;
 		this.height = height;
+		this.space = KEYS.spaceBar;
+		this.pause = false;
 
 		this.gameElement = document.getElementById(this.element);
 		this.board = new Board(this.width, this.height);
@@ -33,9 +35,23 @@ export default class Game {
 			KEYS.down
 		);
 		this.ball = new Ball(SETTINGS.ballRadius, this.width, this.height)
+
+		document.addEventListener('keydown', event => {
+            
+            switch (event.keyCode) {
+                case this.space:
+					console.log(this.space);
+                    this.pause = !this.pause;
+                break;
+            }
+        });
 	}
 
 	render() {
+
+		if(this.pause){
+			return;
+		}
 
 		this.gameElement.innerHTML = '';
 		let svg = document.createElementNS(SVG_NS, 'svg');
