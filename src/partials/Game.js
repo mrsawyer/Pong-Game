@@ -1,9 +1,8 @@
 
-import { SVG_NS } from '../settings';
+import { SVG_NS, KEYS, SETTINGS } from '../settings';
 import Board from './Board';
 import Paddle from './Paddle';
-import { KEYS } from '../settings';
-import { PADDLE } from '../settings';
+import Ball from './Ball';
 
 
 export default class Game {
@@ -17,22 +16,23 @@ export default class Game {
 		this.board = new Board(this.width, this.height);
 		this.player1 = new Paddle(
 			this.height, 
-			PADDLE.paddleWidth, 
-			PADDLE.paddleHeight, 
-			PADDLE.boardGap,
-			((this.height - PADDLE.paddleHeight) / 2),
+			SETTINGS.paddleWidth, 
+			SETTINGS.paddleHeight, 
+			SETTINGS.boardGap,
+			((this.height - SETTINGS.paddleHeight) / 2),
 			KEYS.a,
 			KEYS.z
 		);
 		this.player2 = new Paddle(
 			this.height, 
-			PADDLE.paddleWidth, 
-			PADDLE.paddleHeight, 
-			(this.width-(PADDLE.boardGap+PADDLE.paddleWidth)),
-			((this.height - PADDLE.paddleHeight) / 2),
+			SETTINGS.paddleWidth, 
+			SETTINGS.paddleHeight, 
+			(this.width-(SETTINGS.boardGap+SETTINGS.paddleWidth)),
+			((this.height - SETTINGS.paddleHeight) / 2),
 			KEYS.up,
 			KEYS.down
 		);
+		this.ball = new Ball(SETTINGS.ballRadius, this.width, this.height)
 	}
 
 	render() {
@@ -46,6 +46,7 @@ export default class Game {
 		this.board.render(svg);
 		this.player1.render(svg);
 		this.player2.render(svg);
+		this.ball.render(svg);
 
 	}
 }
