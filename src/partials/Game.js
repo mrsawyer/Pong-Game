@@ -3,6 +3,7 @@ import { SVG_NS, KEYS, SETTINGS } from '../settings';
 import Board from './Board';
 import Paddle from './Paddle';
 import Ball from './Ball';
+import Score from './Score';
 
 
 export default class Game {
@@ -34,7 +35,10 @@ export default class Game {
 			KEYS.up,
 			KEYS.down
 		);
-		this.ball = new Ball(SETTINGS.ballRadius, this.width, this.height)
+
+		this.score1 = new Score((this.width/2 - 40) , (this.height-this.height) + 25, SETTINGS.fontSize);
+		this.score2 = new Score((this.width/2 + 20) , (this.height-this.height) + 25, SETTINGS.fontSize);
+		this.ball = new Ball(SETTINGS.ballRadius, this.width, this.height);
 
 		document.addEventListener('keydown', event => {
             
@@ -62,7 +66,8 @@ export default class Game {
 		this.board.render(svg);
 		this.player1.render(svg);
 		this.player2.render(svg);
-		this.ball.render(svg);
-
+		this.ball.render(svg, this.player1, this.player2);
+		this.score1.render(svg, this.player1);
+		this.score2.render(svg, this.player2);
 	}
 }

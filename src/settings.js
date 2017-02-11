@@ -17,5 +17,8 @@ export const SETTINGS = {
     ballRadius: 8,
     boardFill: '#353535',
     mainFill: '#ffffff',
-    direction: 1 
+    direction: 1,
+    fontSize: '30px',
+    fontFamily: 'Silkscreen Web',
+
 }

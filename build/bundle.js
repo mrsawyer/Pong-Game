@@ -466,22 +466,40 @@
 
 	var Game = function () {
 		function Game(element, width, height) {
+			var _this = this;
+
 			_classCallCheck(this, Game);
 
 			this.element = element;
 			this.width = width;
 			this.height = height;
+			this.space = _settings.KEYS.spaceBar;
+			this.pause = false;
 
 			this.gameElement = document.getElementById(this.element);
 			this.board = new _Board2.default(this.width, this.height);
 			this.player1 = new _Paddle2.default(this.height, _settings.SETTINGS.paddleWidth, _settings.SETTINGS.paddleHeight, _settings.SETTINGS.boardGap, (this.height - _settings.SETTINGS.paddleHeight) / 2, _settings.KEYS.a, _settings.KEYS.z);
 			this.player2 = new _Paddle2.default(this.height, _settings.SETTINGS.paddleWidth, _settings.SETTINGS.paddleHeight, this.width - (_settings.SETTINGS.boardGap + _settings.SETTINGS.paddleWidth), (this.height - _settings.SETTINGS.paddleHeight) / 2, _settings.KEYS.up, _settings.KEYS.down);
 			this.ball = new _Ball2.default(_settings.SETTINGS.ballRadius, this.width, this.height);
+
+			document.addEventListener('keydown', function (event) {
+
+				switch (event.keyCode) {
+					case _this.space:
+						console.log(_this.space);
+						_this.pause = !_this.pause;
+						break;
+				}
+			});
 		}
 
 		_createClass(Game, [{
 			key: 'render',
 			value: function render() {
+
+				if (this.pause) {
+					return;
+				}
 
 				this.gameElement.innerHTML = '';
 				var svg = document.createElementNS(_settings.SVG_NS, 'svg');
@@ -673,14 +691,39 @@
 	    }
 
 	    _createClass(Ball, [{
+	        key: 'wallCollision',
+	        value: function wallCollision() {
+	            var hitLeft = this.x - this.radius <= this.boardWidth - this.boardWidth;
+	            var hitRight = this.x + this.radius >= this.boardWidth;
+	            var hitTop = this.y - this.radius <= this.boardHeight - this.boardHeight;
+	            var hitBottom = this.y + this.radius >= this.boardHeight;
+
+	            if (hitLeft || hitRight) {
+	                this.vx = -this.vx;
+	            } else if (hitBottom || hitTop) {
+	                this.vy = -this.vy;
+	            }
+	        }
+	    }, {
 	        key: 'reset',
 	        value: function reset() {
 	            this.x = this.boardWidth / 2;
 	            this.y = this.boardHeight / 2;
+
+	            this.vy = 0;
+
+	            while (this.vy === 0) {
+	                this.vy = Math.floor(Math.random() * 10 - 5);
+	            }
+
+	            this.vx = _settings.SETTINGS.direction * (6 - Math.abs(this.vy));
 	        }
 	    }, {
 	        key: 'render',
 	        value: function render(svg) {
+	            this.x += this.vx;
+	            this.y += this.vy;
+	            this.wallCollision();
 
 	            var circle = document.createElementNS(_settings.SVG_NS, 'circle');
 	            circle.setAttributeNS(null, 'r', this.radius);
