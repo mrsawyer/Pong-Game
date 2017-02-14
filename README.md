@@ -22,16 +22,16 @@ A pong game made using SVGs.
 * ▲ : up
 * ▼: down
 
-# Motivation
+## Motivation
 Pong Wars was created as a requirement for project 3 at RED Academy 
 
-# Key Takeaways
+## Key Takeaways
 The main motivation behind the creation of this website was to become more familiar using Webpack for running build tasks, how to build svgs using javascript. These goals were achieved through the creation of Pong Wars. As can be seen through out the code, many different techniques, properties, and organizations were used.
 
-# Technologies Used
+## Technologies Used
 The site was designed using Visual Studio Code. Many references were made to Mozilla Developer Network, Stack Overflow, RED resources, and others. 
 
-# Included
+## Included
 index.html
 bundle.js
 *this* README.md
@@ -41,5 +41,10 @@ bundle.js
 all font resources
 all images used
 
-# Contributors
+## To Do
+1) Complete multikey play
+2) Add further stretch goals
+3) Update README
+
+## Contributors
 Montana Sawyer
