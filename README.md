@@ -35,9 +35,6 @@ The site was designed using Visual Studio Code. Many references were made to Moz
 index.html
 bundle.js
 *this* README.md
-.gitignore
-.eslintrc
-.babelrc
 all font resources
 all images used
 
