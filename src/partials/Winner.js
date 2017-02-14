@@ -17,7 +17,7 @@ export default class Score {
         text.setAttributeNS(null, 'y', this.y);
         text.setAttributeNS(null, 'font-size', this.size);
         text.setAttributeNS(null, 'fill', SETTINGS.mainFill);
-        text.textContent = player.score;
+        text.textContent = `May the force be with you ${player}`;
 
         svg.appendChild(text);
     }

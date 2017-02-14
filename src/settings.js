@@ -15,10 +15,10 @@ export const SETTINGS = {
     speed: 10,
     score: 0,
     ballRadius: 8,
-    boardFill: '#353535',
+    boardFill: '#000000',
     mainFill: '#ffffff',
     direction: 1,
     fontSize: '30px',
     fontFamily: 'Silkscreen Web',
-
+//#353535
 }
