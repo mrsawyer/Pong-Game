@@ -2,10 +2,11 @@ import { SVG_NS, SETTINGS } from '../settings';
 
 
 export default class Score {
-    constructor(x, y, size) {
+    constructor(x, y, size, playerWins) {
         this.x = x;
         this.y = y;
         this.size = size;
+        this.playerWins = playerWins;
     }
 
 
@@ -28,7 +29,7 @@ export default class Score {
             text1.setAttributeNS(null, 'font-size', this.size);
             text1.setAttributeNS(null, 'fill', SETTINGS.mainFill);
             text1.setAttributeNS(null, 'id', 'winner');
-            text1.textContent = `May the force be with you ${player}`;
+            text1.textContent = `${this.playerWins} Wins!`;
 
             svg.appendChild(text1);
 		}

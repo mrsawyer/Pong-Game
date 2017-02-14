@@ -40,8 +40,8 @@ export default class Game {
 			KEYS.down
 		);
 
-		this.score1 = new Score((this.width/2 - 40) , (this.height-this.height) + 25, SETTINGS.fontSize);
-		this.score2 = new Score((this.width/2 + 20) , (this.height-this.height) + 25, SETTINGS.fontSize);
+		this.score1 = new Score((this.width/2 - 40) , (this.height-this.height) + 25, SETTINGS.fontSize, 'player1');
+		this.score2 = new Score((this.width/2 + 20) , (this.height-this.height) + 25, SETTINGS.fontSize, 'player2');
 		this.ball = new Ball(SETTINGS.ballRadius, this.width, this.height);
 		this.pauseText = new Pause(this.width/3, this.height/2, this.pause);
 

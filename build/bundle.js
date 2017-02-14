@@ -516,6 +516,8 @@
 
 				this.gameElement.innerHTML = '';
 				var svg = document.createElementNS(_settings.SVG_NS, 'svg');
+				this.score1.render(svg, this.player1);
+				this.score2.render(svg, this.player2);
 				svg.setAttributeNS(null, 'width', this.width);
 				svg.setAttributeNS(null, 'height', this.height);
 				svg.setAttributeNS(null, 'viewBox', '0 0 ' + this.width + ' ' + this.height);
@@ -525,8 +527,6 @@
 				this.player2.render(svg);
 				this.ball.render(svg, this.player1, this.player2);
 				this.pauseText.render(svg);
-				this.score1.render(svg, this.player1);
-				this.score2.render(svg, this.player2);
 				document.getElementById('paused').style.visibility = 'hidden';
 			}
 		}]);
