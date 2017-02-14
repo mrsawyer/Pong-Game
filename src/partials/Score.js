@@ -20,5 +20,17 @@ export default class Score {
         text.textContent = player.score;
 
         svg.appendChild(text);
+
+        if(player.score >=2){
+			let text1 = document.createElementNS(SVG_NS, 'text');
+            text1.setAttributeNS(null, 'x', 128);
+            text1.setAttributeNS(null, 'y', 128);
+            text1.setAttributeNS(null, 'font-size', this.size);
+            text1.setAttributeNS(null, 'fill', SETTINGS.mainFill);
+            text1.setAttributeNS(null, 'id', 'winner');
+            text1.textContent = `May the force be with you ${player}`;
+
+            svg.appendChild(text1);
+		}
     }
 }

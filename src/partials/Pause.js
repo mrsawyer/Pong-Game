@@ -1,4 +1,4 @@
-import { SVG_NS, SETTINGS } from '../settings';
+import { SVG_NS } from '../settings';
 
 
 export default class Pause {
@@ -11,10 +11,10 @@ export default class Pause {
     render(svg) {
 
         let text = document.createElementNS(SVG_NS, 'text');
-        text.setAttributeNS(null, 'x', this.x);
-        text.setAttributeNS(null, 'y', this.y);
-        text.setAttributeNS(null, 'font-size', SETTINGS.fontSize);
-        text.setAttributeNS(null, 'fill', SETTINGS.mainFill);
+        text.setAttributeNS(null, 'x', 0);
+        text.setAttributeNS(null, 'y', this.y +40);
+        text.setAttributeNS(null, 'font-size', '123px');
+        text.setAttributeNS(null, 'fill', 'red');
         text.setAttributeNS(null, 'id', 'paused');
         text.textContent = 'paused';
 

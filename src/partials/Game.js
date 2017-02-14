@@ -5,7 +5,7 @@ import Paddle from './Paddle';
 import Ball from './Ball';
 import Score from './Score';
 import Pause from './Pause';
-import Winner from './Winner';
+
 
 
 
@@ -43,9 +43,7 @@ export default class Game {
 		this.score1 = new Score((this.width/2 - 40) , (this.height-this.height) + 25, SETTINGS.fontSize);
 		this.score2 = new Score((this.width/2 + 20) , (this.height-this.height) + 25, SETTINGS.fontSize);
 		this.ball = new Ball(SETTINGS.ballRadius, this.width, this.height);
-		this.pauseText = new Pause(this.width/2, this.height/2, this.pause);
-		this.winner1 = new Winner(this.width/2, this.height/2);
-		this.winner1 = new Winner(this.width/2, this.height/2);
+		this.pauseText = new Pause(this.width/3, this.height/2, this.pause);
 
 		document.addEventListener('keydown', event => {
             

@@ -468,10 +468,6 @@
 
 	var _Pause2 = _interopRequireDefault(_Pause);
 
-	var _Winner = __webpack_require__(16);
-
-	var _Winner2 = _interopRequireDefault(_Winner);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -497,9 +493,7 @@
 			this.score1 = new _Score2.default(this.width / 2 - 40, this.height - this.height + 25, _settings.SETTINGS.fontSize);
 			this.score2 = new _Score2.default(this.width / 2 + 20, this.height - this.height + 25, _settings.SETTINGS.fontSize);
 			this.ball = new _Ball2.default(_settings.SETTINGS.ballRadius, this.width, this.height);
-			this.pauseText = new _Pause2.default(this.width / 2, this.height / 2, this.pause);
-			this.winner1 = new _Winner2.default(this.width / 2, this.height / 2);
-			this.winner1 = new _Winner2.default(this.width / 2, this.height / 2);
+			this.pauseText = new _Pause2.default(this.width / 3, this.height / 2, this.pause);
 
 			document.addEventListener('keydown', function (event) {
 
@@ -864,6 +858,18 @@
 	            text.textContent = player.score;
 
 	            svg.appendChild(text);
+
+	            if (player.score >= 2) {
+	                var text1 = document.createElementNS(_settings.SVG_NS, 'text');
+	                text1.setAttributeNS(null, 'x', 128);
+	                text1.setAttributeNS(null, 'y', 128);
+	                text1.setAttributeNS(null, 'font-size', this.size);
+	                text1.setAttributeNS(null, 'fill', _settings.SETTINGS.mainFill);
+	                text1.setAttributeNS(null, 'id', 'winner');
+	                text1.textContent = 'May the force be with you ' + player;
+
+	                svg.appendChild(text1);
+	            }
 	        }
 	    }]);
 
@@ -902,10 +908,10 @@
 	        value: function render(svg) {
 
 	            var text = document.createElementNS(_settings.SVG_NS, 'text');
-	            text.setAttributeNS(null, 'x', this.x);
-	            text.setAttributeNS(null, 'y', this.y);
-	            text.setAttributeNS(null, 'font-size', _settings.SETTINGS.fontSize);
-	            text.setAttributeNS(null, 'fill', _settings.SETTINGS.mainFill);
+	            text.setAttributeNS(null, 'x', 0);
+	            text.setAttributeNS(null, 'y', this.y + 40);
+	            text.setAttributeNS(null, 'font-size', '123px');
+	            text.setAttributeNS(null, 'fill', 'red');
 	            text.setAttributeNS(null, 'id', 'paused');
 	            text.textContent = 'paused';
 
@@ -917,51 +923,6 @@
 	}();
 
 	exports.default = Pause;
-
-/***/ },
-/* 16 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _settings = __webpack_require__(10);
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	var Score = function () {
-	    function Score(x, y, size) {
-	        _classCallCheck(this, Score);
-
-	        this.x = x;
-	        this.y = y;
-	        this.size = size;
-	    }
-
-	    _createClass(Score, [{
-	        key: 'render',
-	        value: function render(svg, player) {
-
-	            var text = document.createElementNS(_settings.SVG_NS, 'text');
-	            text.setAttributeNS(null, 'x', this.x);
-	            text.setAttributeNS(null, 'y', this.y);
-	            text.setAttributeNS(null, 'font-size', this.size);
-	            text.setAttributeNS(null, 'fill', _settings.SETTINGS.mainFill);
-	            text.textContent = 'May the force be with you ' + player;
-
-	            svg.appendChild(text);
-	        }
-	    }]);
-
-	    return Score;
-	}();
-
-	exports.default = Score;
 
 /***/ }
 /******/ ]);
