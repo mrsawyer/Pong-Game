@@ -20,5 +20,6 @@ export const SETTINGS = {
     direction: 1,
     fontSize: '30px',
     fontFamily: 'Silkscreen Web',
+    gameOver: false
 //#353535
 }

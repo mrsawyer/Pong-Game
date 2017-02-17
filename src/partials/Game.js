@@ -44,6 +44,7 @@ export default class Game {
 		this.score2 = new Score((this.width/2 + 20) , (this.height-this.height) + 25, SETTINGS.fontSize, 'player2');
 		this.ball = new Ball(SETTINGS.ballRadius, this.width, this.height);
 		this.pauseText = new Pause(this.width/3, this.height/2, this.pause);
+		this.gameover = 
 
 		document.addEventListener('keydown', event => {
             
@@ -61,6 +62,11 @@ export default class Game {
 			document.getElementById('paused').style.visibility = 'visible';
 			return;
 		}
+
+		if(SETTINGS.gameOver){
+			return;
+		}
+
 
 		this.gameElement.innerHTML = '';
 		let svg = document.createElementNS(SVG_NS, 'svg');

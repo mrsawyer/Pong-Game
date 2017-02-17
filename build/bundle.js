@@ -490,8 +490,8 @@
 			this.player1 = new _Paddle2.default(this.height, _settings.SETTINGS.paddleWidth, _settings.SETTINGS.paddleHeight, _settings.SETTINGS.boardGap, (this.height - _settings.SETTINGS.paddleHeight) / 2, _settings.KEYS.a, _settings.KEYS.z);
 			this.player2 = new _Paddle2.default(this.height, _settings.SETTINGS.paddleWidth, _settings.SETTINGS.paddleHeight, this.width - (_settings.SETTINGS.boardGap + _settings.SETTINGS.paddleWidth), (this.height - _settings.SETTINGS.paddleHeight) / 2, _settings.KEYS.up, _settings.KEYS.down);
 
-			this.score1 = new _Score2.default(this.width / 2 - 40, this.height - this.height + 25, _settings.SETTINGS.fontSize);
-			this.score2 = new _Score2.default(this.width / 2 + 20, this.height - this.height + 25, _settings.SETTINGS.fontSize);
+			this.score1 = new _Score2.default(this.width / 2 - 40, this.height - this.height + 25, _settings.SETTINGS.fontSize, 'player1');
+			this.score2 = new _Score2.default(this.width / 2 + 20, this.height - this.height + 25, _settings.SETTINGS.fontSize, 'player2');
 			this.ball = new _Ball2.default(_settings.SETTINGS.ballRadius, this.width, this.height);
 			this.pauseText = new _Pause2.default(this.width / 3, this.height / 2, this.pause);
 
@@ -516,8 +516,6 @@
 
 				this.gameElement.innerHTML = '';
 				var svg = document.createElementNS(_settings.SVG_NS, 'svg');
-				this.score1.render(svg, this.player1);
-				this.score2.render(svg, this.player2);
 				svg.setAttributeNS(null, 'width', this.width);
 				svg.setAttributeNS(null, 'height', this.height);
 				svg.setAttributeNS(null, 'viewBox', '0 0 ' + this.width + ' ' + this.height);
@@ -527,6 +525,8 @@
 				this.player2.render(svg);
 				this.ball.render(svg, this.player1, this.player2);
 				this.pauseText.render(svg);
+				this.score1.render(svg, this.player1);
+				this.score2.render(svg, this.player2);
 				document.getElementById('paused').style.visibility = 'hidden';
 			}
 		}]);
@@ -838,12 +838,13 @@
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	var Score = function () {
-	    function Score(x, y, size) {
+	    function Score(x, y, size, playerWins) {
 	        _classCallCheck(this, Score);
 
 	        this.x = x;
 	        this.y = y;
 	        this.size = size;
+	        this.playerWins = playerWins;
 	    }
 
 	    _createClass(Score, [{
@@ -866,7 +867,7 @@
 	                text1.setAttributeNS(null, 'font-size', this.size);
 	                text1.setAttributeNS(null, 'fill', _settings.SETTINGS.mainFill);
 	                text1.setAttributeNS(null, 'id', 'winner');
-	                text1.textContent = 'May the force be with you ' + player;
+	                text1.textContent = this.playerWins + ' Wins!';
 
 	                svg.appendChild(text1);
 	            }

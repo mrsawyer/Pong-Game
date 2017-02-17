@@ -32,6 +32,8 @@ export default class Score {
             text1.textContent = `${this.playerWins} Wins!`;
 
             svg.appendChild(text1);
+
+            SETTINGS.gameOver = true;
 		}
     }
 }
