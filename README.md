@@ -40,10 +40,5 @@ bundle.js
 all font resources
 all images used
 
-## To Do
-1) Complete multikey play
-2) Add further stretch goals
-3) Update README
-
 ## Contributors
 Montana Sawyer
