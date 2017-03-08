@@ -2,7 +2,7 @@
 
 A pong game made using SVGs.
 
-![alt text](screenshot.png "Instanews Example Page")
+![alt text](screenshot.png "Pong Game")
 
 ## Setup
 
