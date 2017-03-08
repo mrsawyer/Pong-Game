@@ -16,9 +16,11 @@ export default class Game {
 		this.width = width;
 		this.height = height;
 		this.space = KEYS.spaceBar;
+		this.start = KEYS.s;
 		this.pause = false;
-		this.pauseSound = new Audio('public/sounds/Chewbacca Wookie Noise-SoundBible.com-1201859158.wav');
-		this.pauseSound.loop = false;
+		this.gameStart = false;
+		this.startSound = new Audio('public/sounds/imperial_march.wav');
+		this.pauseSound = new Audio('public/sounds/chewy_roar.wav');
 		this.gameElement = document.getElementById(this.element);
 		this.board = new Board(this.width, this.height);
 		this.player1 = new Paddle(
@@ -44,13 +46,21 @@ export default class Game {
 		this.score2 = new Score((this.width/2 + 20) , (this.height-this.height) + 25, SETTINGS.fontSize, 'player2');
 		this.ball = new Ball(SETTINGS.ballRadius, this.width, this.height);
 		this.pauseText = new Pause(this.width/3, this.height/2, this.pause);
-		this.gameover = 
 
 		document.addEventListener('keydown', event => {
             
             switch (event.keyCode) {
                 case this.space:
-                    this.pause = !this.pause;
+					if(!this.pause){this.pauseSound.play();}
+						this.pause = !this.pause;
+                break;
+            }
+        });
+
+		document.getElementById('start-game').addEventListener('click', event => {
+            switch (event) {
+                default:
+					this.gameStart = true;
                 break;
             }
         });
@@ -58,8 +68,14 @@ export default class Game {
 
 	render() {
 
+		if(!this.gameStart){
+			this.startSound.play();
+			return;
+		}
+
 		if(this.pause){
 			document.getElementById('paused').style.visibility = 'visible';
+			this.startSound.play();
 			return;
 		}
 
@@ -67,7 +83,8 @@ export default class Game {
 			return;
 		}
 
-
+		document.getElementById('start-game').style.visibility = 'hidden';
+		this.startSound.pause();
 		this.gameElement.innerHTML = '';
 		let svg = document.createElementNS(SVG_NS, 'svg');
 		svg.setAttributeNS(null, 'width', this.width);
@@ -82,5 +99,5 @@ export default class Game {
 		this.score1.render(svg, this.player1);
 		this.score2.render(svg, this.player2);
 		document.getElementById('paused').style.visibility = 'hidden';
-		}
+	}
 }

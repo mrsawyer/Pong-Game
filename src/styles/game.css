@@ -73,14 +73,31 @@ html {
 body {
   align-items: center;
   display: flex;
-  font-family: 'Silkscreen Web', monotype;
+  font-family: 'Arvo', serif;
+  font-style: italic;
   height: 100vh;
   justify-content: center;
   width: 100%;
+}
+
+.game-wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 h1 {
   font-size: 2.5rem;
   margin-bottom: 1rem; 
   text-align: center;
+  text-transform: uppercase;
+}
+
+button{
+  background: none;
+  font-size: 1.5rem;
+  visibility: visible;
+  border: 1px solid white;
+  color: white;
 }

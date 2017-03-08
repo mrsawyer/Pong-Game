@@ -8,7 +8,7 @@ export default class Ball {
         this.boardWidth = boardWidth;
         this.boardHeight = boardHeight;
         this.reset();
-        this.ping = new Audio('public/sounds/pong-02.wav');
+        this.ping = new Audio('public/sounds/blaster-firing.wav');
     }
 
     wallCollision() {
@@ -24,24 +24,32 @@ export default class Ball {
         }
     }
 
+    leftPaddleCollisionOccured(player2){
+        let paddle = player2.coordinates(player2.x, player2.y, player2.width, player2.height);
+        let [leftX, rightX, topY, bottomY] = paddle;
+        return this.x + this.radius >= leftX
+        &&this.x + this.radius <= rightX
+        &&topY <= this.y
+        &&bottomY >= this.y;
+    }
+
+    rightPaddleCollisionOccured(player1){
+        let paddle = player1.coordinates(player1.x, player1.y, player1.width, player1.height);
+        let [leftX, rightX, topY, bottomY] = paddle; 
+        return  this.x - this.radius >= leftX
+        &&this.x - this.radius <= rightX
+        &&topY <= this.y
+        &&bottomY >= this.y;
+    }
+
     paddleCollision(player1, player2) {
         if (this.vx > 0) { 
-            let paddle = player2.coordinates(player2.x, player2.y, player2.width, player2.height);
-            let [leftX, rightX, topY, bottomY] = paddle;
-            if( this.x + this.radius >= leftX &&
-                this.x + this.radius <= rightX &&
-                topY <= this.y &&
-                bottomY >= this.y){
+            if(this.leftPaddleCollisionOccured(player2)){
                 this.vx = -this.vx;
                 this.ping.play();
             }
         } else {
-            let paddle = player1.coordinates(player1.x, player1.y, player1.width, player1.height);
-            let [leftX, rightX, topY, bottomY] = paddle; 
-            if( this.x - this.radius >= leftX &&
-                this.x - this.radius <= rightX &&
-                topY <= this.y &&
-                bottomY >= this.y){
+            if(this.rightPaddleCollisionOccured(player1)){
                 this.vx = -this.vx;
                 this.ping.play();
             }

@@ -494,8 +494,7 @@
 			this.score2 = new _Score2.default(this.width / 2 + 20, this.height - this.height + 25, _settings.SETTINGS.fontSize, 'player2');
 			this.ball = new _Ball2.default(_settings.SETTINGS.ballRadius, this.width, this.height);
 			this.pauseText = new _Pause2.default(this.width / 3, this.height / 2, this.pause);
-
-			document.addEventListener('keydown', function (event) {
+			this.gameover = document.addEventListener('keydown', function (event) {
 
 				switch (event.keyCode) {
 					case _this.space:
@@ -511,6 +510,10 @@
 
 				if (this.pause) {
 					document.getElementById('paused').style.visibility = 'visible';
+					return;
+				}
+
+				if (_settings.SETTINGS.gameOver) {
 					return;
 				}
 
@@ -566,7 +569,9 @@
 	    mainFill: '#ffffff',
 	    direction: 1,
 	    fontSize: '30px',
-	    fontFamily: 'Silkscreen Web'
+	    fontFamily: 'Silkscreen Web',
+	    gameOver: false
+	    //#353535
 	};
 
 /***/ },
@@ -870,6 +875,8 @@
 	                text1.textContent = this.playerWins + ' Wins!';
 
 	                svg.appendChild(text1);
+
+	                _settings.SETTINGS.gameOver = true;
 	            }
 	        }
 	    }]);
