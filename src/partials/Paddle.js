@@ -12,17 +12,19 @@ export default class Paddle {
         this.down = down;
         this.score = SETTINGS.score;
 
-        document.addEventListener('keydown', event => {
-            
-            switch (event.keyCode) {
-                case this.up:
-                    this.y = Math.max((this.y-SETTINGS.speed), (this.boardHeight-this.boardHeight));
-                    break;
-                case this.down:
-                    this.y = Math.min((this.y+SETTINGS.speed), (this.boardHeight-SETTINGS.paddleHeight));
-                    break;
-            }
-        });
+        if(!SETTINGS.pause){
+            document.addEventListener('keydown', event => {
+                
+                switch (event.keyCode) {
+                    case this.up:
+                        this.y = Math.max((this.y-SETTINGS.speed), (this.boardHeight-this.boardHeight));
+                        break;
+                    case this.down:
+                        this.y = Math.min((this.y+SETTINGS.speed), (this.boardHeight-SETTINGS.paddleHeight));
+                        break;
+                }
+            });
+        }
     }
 
     coordinates(x, y, width, height) {

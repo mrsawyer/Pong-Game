@@ -17,7 +17,7 @@ export default class Game {
 		this.height = height;
 		this.space = KEYS.spaceBar;
 		this.start = KEYS.s;
-		this.pause = false;
+		// this.pause = false;
 		this.gameStart = false;
 		this.startSound = new Audio('public/sounds/imperial_march.wav');
 		this.pauseSound = new Audio('public/sounds/chewy_roar.wav');
@@ -51,8 +51,8 @@ export default class Game {
             
             switch (event.keyCode) {
                 case this.space:
-					if(!this.pause){this.pauseSound.play();}
-						this.pause = !this.pause;
+					if(!SETTINGS.pause){this.pauseSound.play();}
+						SETTINGS.pause = !SETTINGS.pause;
                 break;
             }
         });
@@ -73,7 +73,7 @@ export default class Game {
 			return;
 		}
 
-		if(this.pause){
+		if(SETTINGS.pause){
 			document.getElementById('paused').style.visibility = 'visible';
 			this.startSound.play();
 			return;
