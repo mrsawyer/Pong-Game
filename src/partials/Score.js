@@ -9,8 +9,6 @@ export default class Score {
         this.playerWins = playerWins;
     }
 
-
-    
     render(svg, player) {
 
         let text = document.createElementNS(SVG_NS, 'text');

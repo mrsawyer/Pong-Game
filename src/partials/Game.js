@@ -17,7 +17,6 @@ export default class Game {
 		this.height = height;
 		this.space = KEYS.spaceBar;
 		this.start = KEYS.s;
-		// this.pause = false;
 		this.gameStart = false;
 		this.startSound = new Audio('public/sounds/imperial_march.wav');
 		this.pauseSound = new Audio('public/sounds/chewy_roar.wav');
@@ -48,7 +47,6 @@ export default class Game {
 		this.pauseText = new Pause(this.width/3, this.height/2, this.pause);
 
 		document.addEventListener('keydown', event => {
-            
             switch (event.keyCode) {
                 case this.space:
 					if(!SETTINGS.pause){this.pauseSound.play();}
